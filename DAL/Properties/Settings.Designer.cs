@@ -26,9 +26,9 @@ namespace DAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\SQLEXPRESS;Persist Security Info=True;User ID=sa;Password=Densetsun" +
-            "o255**;Pooling=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCert" +
-            "ificate=True;Application Name=\"SQL Server Management Studio\";Command Timeout=0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\SQLEXPRESS;Initial Catalog=QuanLyCaPhe;Persist Security Info=True;U" +
+            "ser ID=sa;Password=Densetsuno255**;Pooling=False;MultipleActiveResultSets=False;" +
+            "Encrypt=True;TrustServerCertificate=True;")]
         public string strConn {
             get {
                 return ((string)(this["strConn"]));

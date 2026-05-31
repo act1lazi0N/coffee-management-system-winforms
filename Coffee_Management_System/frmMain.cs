@@ -15,6 +15,39 @@ namespace Coffee_Management_System
         public frmMain()
         {
             InitializeComponent();
+
+            btnLoaiMon.Click += btnLoaiMon_Click;
+            btnLoaiMonSide.Click += btnLoaiMon_Click;
+
+            btnMon.Click += btnMon_Click;
+            btnMonSide.Click += btnMon_Click;
+
+            btnBan.Click += btnBan_Click;
+            btnBanSide.Click += btnBan_Click;
+
+            btnDangXuat.Click += btnDangXuat_Click;
+        }
+        private void btnLoaiMon_Click(object sender, EventArgs e)
+        {
+            frmLoaiMon f = new frmLoaiMon();
+            f.ShowDialog();
+        }
+
+        private void btnMon_Click(object sender, EventArgs e)
+        {
+            frmMon f = new frmMon();
+            f.ShowDialog();
+        }
+
+        private void btnBan_Click(object sender, EventArgs e)
+        {
+            frmBan f = new frmBan();
+            f.ShowDialog();
+        }
+
+        private void btnDangXuat_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -1,6 +1,6 @@
 <Solution>
-  <Project Path="BUS/BUS.csproj" />
-  <Project Path="Coffee_Management_System/GUI.csproj" />
-  <Project Path="DAL/DAL.csproj" />
-  <Project Path="DTO/DTO.csproj" />
+  <Project Path="BUS/BUS.csproj" Id="091ce47c-466b-4299-b156-53dc9b180154" />
+  <Project Path="Coffee_Management_System/GUI.csproj" Id="c724d1cb-0276-431e-8a44-0c868e0649ab" />
+  <Project Path="DAL/DAL.csproj" Id="38b2c020-0200-462b-9d45-c2afeeb73088" />
+  <Project Path="DTO/DTO.csproj" Id="adca0268-4e5f-4689-8ab0-4e4083d49031" />
 </Solution>
