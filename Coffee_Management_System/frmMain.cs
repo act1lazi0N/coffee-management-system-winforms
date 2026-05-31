@@ -25,7 +25,12 @@ namespace Coffee_Management_System
             btnBan.Click += btnBan_Click;
             btnBanSide.Click += btnBan_Click;
 
+            btnHoaDon.Click += btnHoaDon_Click;
+
             btnDangXuat.Click += btnDangXuat_Click;
+
+            btnThongKeSide.Click += btnThongKe_Click;
+            btnDoanhThu.Click += btnThongKe_Click;
         }
         private void btnLoaiMon_Click(object sender, EventArgs e)
         {
@@ -48,6 +53,18 @@ namespace Coffee_Management_System
         private void btnDangXuat_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnHoaDon_Click(object sender, EventArgs e)
+        {
+            frmHoaDon f = new frmHoaDon();
+            f.ShowDialog();
+        }
+
+        private void btnThongKe_Click(object sender, EventArgs e)
+        {
+            frmThongKe f = new frmThongKe();
+            f.ShowDialog();
         }
     }
 }
