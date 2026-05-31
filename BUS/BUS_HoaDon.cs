@@ -256,5 +256,46 @@ namespace BUS
 
             return kq;
         }
+
+        public DataTable getChiTietHoaDonCoTenMon(string mahd)
+        {
+            DataTable result = new DataTable();
+
+            result.Columns.Add("mahd");
+            result.Columns.Add("mamon");
+            result.Columns.Add("tenmon");
+            result.Columns.Add("soluong", typeof(int));
+            result.Columns.Add("dongia", typeof(double));
+            result.Columns.Add("thanhtien", typeof(double));
+
+            DataRow[] rowsCT = dal.getTableChiTietHoaDon().Select("mahd='" + mahd + "'");
+
+            foreach (DataRow ct in rowsCT)
+            {
+                string mamon = ct["mamon"].ToString();
+
+                DataRow[] rowsMon = dal.getTableMon().Select("mamon='" + mamon + "'");
+
+                string tenmon = "";
+
+                if (rowsMon.Length > 0)
+                {
+                    tenmon = rowsMon[0]["tenmon"].ToString();
+                }
+
+                DataRow r = result.NewRow();
+
+                r["mahd"] = ct["mahd"].ToString();
+                r["mamon"] = mamon;
+                r["tenmon"] = tenmon;
+                r["soluong"] = Convert.ToInt32(ct["soluong"]);
+                r["dongia"] = Convert.ToDouble(ct["dongia"]);
+                r["thanhtien"] = Convert.ToDouble(ct["thanhtien"]);
+
+                result.Rows.Add(r);
+            }
+
+            return result;
+        }
     }
 }

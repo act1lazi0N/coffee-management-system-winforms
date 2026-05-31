@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +37,9 @@ namespace Coffee_Management_System
 
             dgvHoaDon.CellClick += dgvHoaDon_CellClick;
             dgvChiTiet.CellClick += dgvChiTiet_CellClick;
+
+            btnXuatHoaDon.Click += btnXuatHoaDon_Click;
+            btnXuatCSV.Click += btnXuatCSV_Click;
         }
         private void frmHoaDon_Load(object sender, EventArgs e)
         {
@@ -88,18 +92,16 @@ namespace Coffee_Management_System
 
         private void getGridChiTiet(string mahd)
         {
-            dgvChiTiet.DataSource = bus.getChiTietTheoMaHD(mahd);
+            dgvChiTiet.DataSource = bus.getChiTietHoaDonCoTenMon(mahd);
 
             dgvChiTiet.Columns["mahd"].HeaderText = "Mã HĐ";
             dgvChiTiet.Columns["mamon"].HeaderText = "Mã món";
+            dgvChiTiet.Columns["tenmon"].HeaderText = "Tên món";
             dgvChiTiet.Columns["soluong"].HeaderText = "Số lượng";
             dgvChiTiet.Columns["dongia"].HeaderText = "Đơn giá";
             dgvChiTiet.Columns["thanhtien"].HeaderText = "Thành tiền";
 
             dgvChiTiet.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvChiTiet.AllowUserToAddRows = false;
-            dgvChiTiet.ReadOnly = true;
-            dgvChiTiet.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         private void btnTaoHoaDon_Click(object sender, EventArgs e)
@@ -408,6 +410,123 @@ namespace Coffee_Management_System
             cboTrangThai.SelectedIndex = -1;
 
             dtpNgayLap.Value = DateTime.Now;
+        }
+
+        private void btnXuatHoaDon_Click(object sender, EventArgs e)
+        {
+            if (txtMaHoaDon.Text.Trim() == "")
+            {
+                MessageBox.Show("Bạn chưa chọn hóa đơn cần xuất!");
+                return;
+            }
+
+            if (dgvChiTiet.Rows.Count == 0)
+            {
+                MessageBox.Show("Hóa đơn chưa có chi tiết món!");
+                return;
+            }
+
+            SaveFileDialog save = new SaveFileDialog();
+
+            save.Title = "Xuất hóa đơn";
+            save.Filter = "Text file (*.txt)|*.txt";
+            save.FileName = txtMaHoaDon.Text.Trim() + ".txt";
+
+            if (save.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    StringBuilder sb = new StringBuilder();
+
+                    sb.AppendLine("========================================");
+                    sb.AppendLine("          HÓA ĐƠN QUÁN CÀ PHÊ");
+                    sb.AppendLine("========================================");
+                    sb.AppendLine("Mã hóa đơn : " + txtMaHoaDon.Text);
+                    sb.AppendLine("Bàn        : " + cboBan.Text);
+                    sb.AppendLine("Ngày lập   : " + dtpNgayLap.Value.ToString("dd/MM/yyyy HH:mm"));
+                    sb.AppendLine("Trạng thái : " + cboTrangThai.Text);
+                    sb.AppendLine("----------------------------------------");
+                    sb.AppendLine("DANH SÁCH MÓN");
+                    sb.AppendLine("----------------------------------------");
+
+                    foreach (DataGridViewRow row in dgvChiTiet.Rows)
+                    {
+                        if (row.IsNewRow == false)
+                        {
+                            string mamon = row.Cells["mamon"].Value.ToString();
+                            string soluong = row.Cells["soluong"].Value.ToString();
+                            string dongia = Convert.ToDouble(row.Cells["dongia"].Value).ToString("N0");
+                            string thanhtien = Convert.ToDouble(row.Cells["thanhtien"].Value).ToString("N0");
+
+                            sb.AppendLine("Mã món     : " + mamon);
+                            sb.AppendLine("Số lượng   : " + soluong);
+                            sb.AppendLine("Đơn giá    : " + dongia + "đ");
+                            sb.AppendLine("Thành tiền : " + thanhtien + "đ");
+                            sb.AppendLine("----------------------------------------");
+                        }
+                    }
+
+                    sb.AppendLine("TỔNG TIỀN  : " + txtTongTien.Text + "đ");
+                    sb.AppendLine("========================================");
+                    sb.AppendLine("        Cảm ơn quý khách!");
+                    sb.AppendLine("========================================");
+
+                    File.WriteAllText(save.FileName, sb.ToString(), Encoding.UTF8);
+
+                    MessageBox.Show("Xuất hóa đơn thành công!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi xuất hóa đơn: " + ex.Message);
+                }
+            }
+        }
+
+        private void btnXuatCSV_Click(object sender, EventArgs e)
+        {
+            if (txtMaHoaDon.Text.Trim() == "")
+            {
+                MessageBox.Show("Bạn chưa chọn hóa đơn!");
+                return;
+            }
+
+            SaveFileDialog save = new SaveFileDialog();
+
+            save.Title = "Xuất hóa đơn CSV";
+            save.Filter = "CSV file (*.csv)|*.csv";
+            save.FileName = txtMaHoaDon.Text.Trim() + ".csv";
+
+            if (save.ShowDialog() == DialogResult.OK)
+            {
+                StringBuilder sb = new StringBuilder();
+
+                sb.AppendLine("Ma hoa don," + txtMaHoaDon.Text);
+                sb.AppendLine("Ban," + cboBan.Text);
+                sb.AppendLine("Ngay lap," + dtpNgayLap.Value.ToString("dd/MM/yyyy HH:mm"));
+                sb.AppendLine("Trang thai," + cboTrangThai.Text);
+                sb.AppendLine();
+                sb.AppendLine("Ma mon,So luong,Don gia,Thanh tien");
+
+                foreach (DataGridViewRow row in dgvChiTiet.Rows)
+                {
+                    if (row.IsNewRow == false)
+                    {
+                        sb.AppendLine(
+                            row.Cells["mamon"].Value.ToString() + "," +
+                            row.Cells["soluong"].Value.ToString() + "," +
+                            row.Cells["dongia"].Value.ToString() + "," +
+                            row.Cells["thanhtien"].Value.ToString()
+                        );
+                    }
+                }
+
+                sb.AppendLine();
+                sb.AppendLine("Tong tien," + txtTongTien.Text);
+
+                File.WriteAllText(save.FileName, sb.ToString(), Encoding.UTF8);
+
+                MessageBox.Show("Xuất CSV thành công!");
+            }
         }
     }
 }
