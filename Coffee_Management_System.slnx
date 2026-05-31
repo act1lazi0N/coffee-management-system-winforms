@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="BUS/BUS.csproj" />
+  <Project Path="Coffee_Management_System/GUI.csproj" />
+  <Project Path="DAL/DAL.csproj" />
+  <Project Path="DTO/DTO.csproj" />
+</Solution>
