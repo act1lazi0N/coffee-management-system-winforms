@@ -226,5 +226,18 @@ namespace DAL
             {
             }
         }
+
+        public void reloadData()
+        {
+            ds.Tables["chitiethoadon"].Clear();
+            ds.Tables["hoadon"].Clear();
+            ds.Tables["ban"].Clear();
+            ds.Tables["mon"].Clear();
+
+            daHoaDon.Fill(ds, "hoadon");
+            daChiTiet.Fill(ds, "chitiethoadon");
+            daBan.Fill(ds, "ban");
+            daMon.Fill(ds, "mon");
+        }
     }
 }

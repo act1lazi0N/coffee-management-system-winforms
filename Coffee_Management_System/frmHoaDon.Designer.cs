@@ -306,7 +306,108 @@ namespace Coffee_Management_System
             // 
             // pnlAction
             // 
-            this.pnlAction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(239)))), ((int)(((byte)(230)))));
+            this.pnlAction.Dock = DockStyle.Top;
+            this.pnlAction.Height = 90;
+            this.pnlAction.BackColor = Color.FromArgb(245, 239, 230);
+
+            // 
+            // btnTaoHoaDon
+            // 
+            this.btnTaoHoaDon.Location = new Point(35, 20);
+            this.btnTaoHoaDon.Size = new Size(120, 45);
+            this.btnTaoHoaDon.Text = "Tạo HĐ";
+            this.btnTaoHoaDon.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            this.btnTaoHoaDon.BackColor = Color.FromArgb(76, 175, 80);
+            this.btnTaoHoaDon.ForeColor = Color.White;
+            this.btnTaoHoaDon.FlatStyle = FlatStyle.Flat;
+            this.btnTaoHoaDon.FlatAppearance.BorderSize = 0;
+
+            // 
+            // btnThemMon
+            // 
+            this.btnThemMon.Location = new Point(170, 20);
+            this.btnThemMon.Size = new Size(120, 45);
+            this.btnThemMon.Text = "Thêm món";
+            this.btnThemMon.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            this.btnThemMon.BackColor = Color.FromArgb(121, 85, 72);
+            this.btnThemMon.ForeColor = Color.White;
+            this.btnThemMon.FlatStyle = FlatStyle.Flat;
+            this.btnThemMon.FlatAppearance.BorderSize = 0;
+
+            // 
+            // btnTang
+            // 
+            this.btnTang.Location = new Point(305, 20);
+            this.btnTang.Size = new Size(70, 45);
+            this.btnTang.Text = "+";
+            this.btnTang.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            this.btnTang.BackColor = Color.FromArgb(33, 150, 243);
+            this.btnTang.ForeColor = Color.White;
+            this.btnTang.FlatStyle = FlatStyle.Flat;
+            this.btnTang.FlatAppearance.BorderSize = 0;
+
+            // 
+            // btnGiam
+            // 
+            this.btnGiam.Location = new Point(390, 20);
+            this.btnGiam.Size = new Size(70, 45);
+            this.btnGiam.Text = "-";
+            this.btnGiam.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            this.btnGiam.BackColor = Color.FromArgb(33, 150, 243);
+            this.btnGiam.ForeColor = Color.White;
+            this.btnGiam.FlatStyle = FlatStyle.Flat;
+            this.btnGiam.FlatAppearance.BorderSize = 0;
+
+            // 
+            // btnXoaMon
+            // 
+            this.btnXoaMon.Location = new Point(475, 20);
+            this.btnXoaMon.Size = new Size(120, 45);
+            this.btnXoaMon.Text = "Xóa món";
+            this.btnXoaMon.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            this.btnXoaMon.BackColor = Color.FromArgb(183, 28, 28);
+            this.btnXoaMon.ForeColor = Color.White;
+            this.btnXoaMon.FlatStyle = FlatStyle.Flat;
+            this.btnXoaMon.FlatAppearance.BorderSize = 0;
+
+            // 
+            // btnThanhToan
+            // 
+            this.btnThanhToan.Location = new Point(610, 20);
+            this.btnThanhToan.Size = new Size(145, 45);
+            this.btnThanhToan.Text = "Thanh toán";
+            this.btnThanhToan.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            this.btnThanhToan.BackColor = Color.FromArgb(255, 152, 0);
+            this.btnThanhToan.ForeColor = Color.White;
+            this.btnThanhToan.FlatStyle = FlatStyle.Flat;
+            this.btnThanhToan.FlatAppearance.BorderSize = 0;
+
+            // 
+            // btnHuyHoaDon
+            // 
+            this.btnHuyHoaDon.Location = new Point(770, 20);
+            this.btnHuyHoaDon.Size = new Size(120, 45);
+            this.btnHuyHoaDon.Text = "Hủy HĐ";
+            this.btnHuyHoaDon.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            this.btnHuyHoaDon.BackColor = Color.FromArgb(121, 85, 72);
+            this.btnHuyHoaDon.ForeColor = Color.White;
+            this.btnHuyHoaDon.FlatStyle = FlatStyle.Flat;
+            this.btnHuyHoaDon.FlatAppearance.BorderSize = 0;
+
+            // 
+            // btnLamMoi
+            // 
+            this.btnLamMoi.Location = new Point(905, 20);
+            this.btnLamMoi.Size = new Size(120, 45);
+            this.btnLamMoi.Text = "Làm mới";
+            this.btnLamMoi.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            this.btnLamMoi.BackColor = Color.FromArgb(96, 125, 139);
+            this.btnLamMoi.ForeColor = Color.White;
+            this.btnLamMoi.FlatStyle = FlatStyle.Flat;
+            this.btnLamMoi.FlatAppearance.BorderSize = 0;
+
+            this.pnlAction.Controls.Clear();
+
             this.pnlAction.Controls.Add(this.btnTaoHoaDon);
             this.pnlAction.Controls.Add(this.btnThemMon);
             this.pnlAction.Controls.Add(this.btnTang);
@@ -315,67 +416,6 @@ namespace Coffee_Management_System
             this.pnlAction.Controls.Add(this.btnThanhToan);
             this.pnlAction.Controls.Add(this.btnHuyHoaDon);
             this.pnlAction.Controls.Add(this.btnLamMoi);
-            this.pnlAction.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlAction.Location = new System.Drawing.Point(0, 320);
-            this.pnlAction.Name = "pnlAction";
-            this.pnlAction.Size = new System.Drawing.Size(1200, 80);
-            this.pnlAction.TabIndex = 2;
-            // 
-            // btnTaoHoaDon
-            // 
-            this.btnTaoHoaDon.Location = new System.Drawing.Point(0, 0);
-            this.btnTaoHoaDon.Name = "btnTaoHoaDon";
-            this.btnTaoHoaDon.Size = new System.Drawing.Size(75, 23);
-            this.btnTaoHoaDon.TabIndex = 0;
-            // 
-            // btnThemMon
-            // 
-            this.btnThemMon.Location = new System.Drawing.Point(0, 0);
-            this.btnThemMon.Name = "btnThemMon";
-            this.btnThemMon.Size = new System.Drawing.Size(75, 23);
-            this.btnThemMon.TabIndex = 1;
-            // 
-            // btnTang
-            // 
-            this.btnTang.Location = new System.Drawing.Point(0, 0);
-            this.btnTang.Name = "btnTang";
-            this.btnTang.Size = new System.Drawing.Size(70, 45);
-            this.btnTang.TabIndex = 2;
-            // 
-            // btnGiam
-            // 
-            this.btnGiam.Location = new System.Drawing.Point(0, 0);
-            this.btnGiam.Name = "btnGiam";
-            this.btnGiam.Size = new System.Drawing.Size(70, 45);
-            this.btnGiam.TabIndex = 3;
-            // 
-            // btnXoaMon
-            // 
-            this.btnXoaMon.Location = new System.Drawing.Point(0, 0);
-            this.btnXoaMon.Name = "btnXoaMon";
-            this.btnXoaMon.Size = new System.Drawing.Size(75, 23);
-            this.btnXoaMon.TabIndex = 4;
-            // 
-            // btnThanhToan
-            // 
-            this.btnThanhToan.Location = new System.Drawing.Point(0, 0);
-            this.btnThanhToan.Name = "btnThanhToan";
-            this.btnThanhToan.Size = new System.Drawing.Size(145, 45);
-            this.btnThanhToan.TabIndex = 5;
-            // 
-            // btnHuyHoaDon
-            // 
-            this.btnHuyHoaDon.Location = new System.Drawing.Point(0, 0);
-            this.btnHuyHoaDon.Name = "btnHuyHoaDon";
-            this.btnHuyHoaDon.Size = new System.Drawing.Size(75, 23);
-            this.btnHuyHoaDon.TabIndex = 6;
-            // 
-            // btnLamMoi
-            // 
-            this.btnLamMoi.Location = new System.Drawing.Point(0, 0);
-            this.btnLamMoi.Name = "btnLamMoi";
-            this.btnLamMoi.Size = new System.Drawing.Size(75, 23);
-            this.btnLamMoi.TabIndex = 7;
             // 
             // pnlSearch
             // 

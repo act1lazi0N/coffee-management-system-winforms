@@ -168,27 +168,35 @@ namespace Coffee_Management_System
                 return;
             }
 
-            double dongia = Convert.ToDouble(txtDonGia.Text);
-            double thanhtien = soluong * dongia;
+            string mahd = txtMaHoaDon.Text.Trim();
 
             ChiTietHoaDon ct = new ChiTietHoaDon();
 
-            ct.Mahd = txtMaHoaDon.Text.Trim();
+            ct.Mahd = mahd;
             ct.Mamon = cboMon.SelectedValue.ToString();
             ct.Soluong = soluong;
-            ct.Dongia = dongia;
-            ct.Thanhtien = thanhtien;
+            ct.Dongia = Convert.ToDouble(txtDonGia.Text.Trim());
+            ct.Thanhtien = ct.Soluong * ct.Dongia;
 
             Boolean kq = bus.add_ChiTietHoaDon(ct);
 
             if (kq)
             {
-                getGridChiTiet(txtMaHoaDon.Text.Trim());
+                MessageBox.Show("Thêm món vào hóa đơn thành công!");
+
+                bus.reload();
+
+                getGridChiTiet(mahd);
                 refreshTongTien();
                 getGridHoaDon();
+
+                txtMaHoaDon.Text = mahd;
+            }
+            else
+            {
+                MessageBox.Show("Thêm món thất bại!");
             }
         }
-
         private void btnTang_Click(object sender, EventArgs e)
         {
             if (dgvChiTiet.CurrentRow == null)

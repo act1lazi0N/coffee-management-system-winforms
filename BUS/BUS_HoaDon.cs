@@ -13,6 +13,7 @@ namespace BUS
     public class BUS_HoaDon
     {
         private DAL_HoaDon dal = new DAL_HoaDon();
+        private BUS_ChiTietHoaDon busCT = new BUS_ChiTietHoaDon();
 
         public DataTable getTableHoaDon()
         {
@@ -91,40 +92,13 @@ namespace BUS
 
         public Boolean add_ChiTietHoaDon(ChiTietHoaDon ct)
         {
-            Boolean kq = false;
+            Boolean kq = busCT.add_ChiTietHoaDon(ct);
 
-            DataRow[] rows = dal.getTableChiTietHoaDon().Select(
-                "mahd='" + ct.Mahd + "' AND mamon='" + ct.Mamon + "'"
-            );
-
-            if (rows.Length > 0)
+            if (kq)
             {
-                int soluongCu = Convert.ToInt32(rows[0]["soluong"]);
-                double dongia = Convert.ToDouble(rows[0]["dongia"]);
-
-                int soluongMoi = soluongCu + ct.Soluong;
-                double thanhtienMoi = soluongMoi * dongia;
-
-                dal.updateChiTietHoaDon(ct.Mahd, ct.Mamon, soluongMoi, thanhtienMoi);
-
-                kq = true;
+                double tong = busCT.tinhTongTien(ct.Mahd);
+                dal.updateHoaDonTongTien(ct.Mahd, tong);
             }
-            else
-            {
-                DataRow r = dal.getTableChiTietHoaDon().NewRow();
-
-                r["mahd"] = ct.Mahd;
-                r["mamon"] = ct.Mamon;
-                r["soluong"] = ct.Soluong;
-                r["dongia"] = ct.Dongia;
-                r["thanhtien"] = ct.Thanhtien;
-
-                dal.addRowToChiTietHoaDon(r);
-
-                kq = true;
-            }
-
-            capNhatTongTien(ct.Mahd);
 
             return kq;
         }
@@ -296,6 +270,10 @@ namespace BUS
             }
 
             return result;
+        }
+        public void reload()
+        {
+            dal.reloadData();
         }
     }
 }
