@@ -46,6 +46,7 @@
     <Compile Include="BUS_HoaDon.cs" />
     <Compile Include="BUS_LoaiMon.cs" />
     <Compile Include="BUS_Mon.cs" />
+    <Compile Include="BUS_TaiKhoan.cs" />
     <Compile Include="BUS_ThongKe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

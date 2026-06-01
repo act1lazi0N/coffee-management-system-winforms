@@ -48,6 +48,7 @@
     <Compile Include="DAL_HoaDon.cs" />
     <Compile Include="DAL_LoaiMon.cs" />
     <Compile Include="DAL_Mon.cs" />
+    <Compile Include="DAL_TaiKhoan.cs" />
     <Compile Include="DAL_ThongKe.cs" />
     <Compile Include="MyDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

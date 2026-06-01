@@ -7,14 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DTO;
 
 namespace Coffee_Management_System
 {
     public partial class frmMain : Form
     {
-        public frmMain()
+        private TaiKhoan currentUser;
+
+        public frmMain(TaiKhoan tk)
         {
             InitializeComponent();
+
+            currentUser = tk;
 
             btnLoaiMon.Click += btnLoaiMon_Click;
             btnLoaiMonSide.Click += btnLoaiMon_Click;
@@ -25,13 +30,68 @@ namespace Coffee_Management_System
             btnBan.Click += btnBan_Click;
             btnBanSide.Click += btnBan_Click;
 
-            btnHoaDon.Click += btnHoaDon_Click;
-
             btnDangXuat.Click += btnDangXuat_Click;
 
-            btnThongKeSide.Click += btnThongKe_Click;
+            btnHoaDon.Click += btnHoaDon_Click;
             btnDoanhThu.Click += btnThongKe_Click;
+            btnThongKeSide.Click += btnThongKe_Click;
+
+            phanQuyen();
         }
+
+        private void phanQuyen()
+        {
+            lblGreeting.Text = "Chào, " + currentUser.Hoten + " (" + currentUser.Vaitro + ")";
+
+            if (currentUser.Vaitro == "Admin")
+            {
+                setTatCaChucNang(true);
+            }
+            else if (currentUser.Vaitro == "QuanLy")
+            {
+                setTatCaChucNang(true);
+
+                btnNhanVien.Enabled = false;
+            }
+            else if (currentUser.Vaitro == "NhanVien")
+            {
+                btnLoaiMon.Enabled = false;
+                btnLoaiMonSide.Enabled = false;
+
+                btnMon.Enabled = false;
+                btnMonSide.Enabled = false;
+
+                btnBan.Enabled = false;
+                btnBanSide.Enabled = false;
+
+                btnDoanhThu.Enabled = false;
+                btnThongKeSide.Enabled = false;
+
+                btnNhanVien.Enabled = false;
+
+                btnHoaDon.Enabled = true;
+            }
+        }
+
+        private void setTatCaChucNang(bool value)
+        {
+            btnLoaiMon.Enabled = value;
+            btnLoaiMonSide.Enabled = value;
+
+            btnMon.Enabled = value;
+            btnMonSide.Enabled = value;
+
+            btnBan.Enabled = value;
+            btnBanSide.Enabled = value;
+
+            btnHoaDon.Enabled = value;
+
+            btnDoanhThu.Enabled = value;
+            btnThongKeSide.Enabled = value;
+
+            btnNhanVien.Enabled = value;
+        }
+
         private void btnLoaiMon_Click(object sender, EventArgs e)
         {
             frmLoaiMon f = new frmLoaiMon();
@@ -50,11 +110,6 @@ namespace Coffee_Management_System
             f.ShowDialog();
         }
 
-        private void btnDangXuat_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void btnHoaDon_Click(object sender, EventArgs e)
         {
             frmHoaDon f = new frmHoaDon();
@@ -66,5 +121,11 @@ namespace Coffee_Management_System
             frmThongKe f = new frmThongKe();
             f.ShowDialog();
         }
+
+        private void btnDangXuat_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
+    
 }
