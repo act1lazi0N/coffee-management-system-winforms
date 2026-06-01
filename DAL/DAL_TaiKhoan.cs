@@ -1,11 +1,7 @@
 ﻿using DTO;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DAL
@@ -30,6 +26,12 @@ namespace DAL
         public DataTable getTableTaiKhoan()
         {
             return ds.Tables["taikhoan"];
+        }
+
+        public void reloadData()
+        {
+            ds.Tables["taikhoan"].Clear();
+            da.Fill(ds, "taikhoan");
         }
 
         public TaiKhoan getTaiKhoan(string tendangnhap, string matkhau)
@@ -62,6 +64,67 @@ namespace DAL
             }
 
             return tk;
+        }
+
+        public void addRowToTaiKhoan(DataRow r)
+        {
+            try
+            {
+                ds.Tables["taikhoan"].Rows.Add(r);
+                da.Update(ds, "taikhoan");
+                ds.AcceptChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi thêm tài khoản: " + ex.Message);
+            }
+        }
+
+        public void updateRowTaiKhoan(string tendangnhap, string matkhau, string hoten, string vaitro, bool trangthai)
+        {
+            try
+            {
+                DataRow[] rows = ds.Tables["taikhoan"].Select(
+                    "tendangnhap='" + tendangnhap.Replace("'", "''") + "'"
+                );
+
+                if (rows.Length > 0)
+                {
+                    rows[0]["matkhau"] = matkhau;
+                    rows[0]["hoten"] = hoten;
+                    rows[0]["vaitro"] = vaitro;
+                    rows[0]["trangthai"] = trangthai;
+
+                    da.Update(ds, "taikhoan");
+                    ds.AcceptChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi sửa tài khoản: " + ex.Message);
+            }
+        }
+
+        public void deleteRowTaiKhoan(string tendangnhap)
+        {
+            try
+            {
+                DataRow[] rows = ds.Tables["taikhoan"].Select(
+                    "tendangnhap='" + tendangnhap.Replace("'", "''") + "'"
+                );
+
+                if (rows.Length > 0)
+                {
+                    rows[0].Delete();
+
+                    da.Update(ds, "taikhoan");
+                    ds.AcceptChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi xóa tài khoản: " + ex.Message);
+            }
         }
     }
 }

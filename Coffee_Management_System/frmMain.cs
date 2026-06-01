@@ -35,6 +35,7 @@ namespace Coffee_Management_System
             btnHoaDon.Click += btnHoaDon_Click;
             btnDoanhThu.Click += btnThongKe_Click;
             btnThongKeSide.Click += btnThongKe_Click;
+            btnNhanVien.Click += btnNhanVien_Click;
 
             phanQuyen();
         }
@@ -90,6 +91,12 @@ namespace Coffee_Management_System
             btnThongKeSide.Enabled = value;
 
             btnNhanVien.Enabled = value;
+        }
+
+        private void btnNhanVien_Click(object sender, EventArgs e)
+        {
+            frmTaiKhoan f = new frmTaiKhoan();
+            f.ShowDialog();
         }
 
         private void btnLoaiMon_Click(object sender, EventArgs e)
