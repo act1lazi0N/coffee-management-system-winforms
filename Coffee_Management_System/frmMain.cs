@@ -62,9 +62,6 @@ namespace Coffee_Management_System
                 btnMon.Enabled = false;
                 btnMonSide.Enabled = false;
 
-                btnBan.Enabled = false;
-                btnBanSide.Enabled = false;
-
                 btnDoanhThu.Enabled = false;
                 btnThongKeSide.Enabled = false;
 
@@ -132,6 +129,8 @@ namespace Coffee_Management_System
         private void btnDangXuat_Click(object sender, EventArgs e)
         {
             this.Close();
+            frmLogin f = new frmLogin();
+            f.ShowDialog();
         }
     }
     

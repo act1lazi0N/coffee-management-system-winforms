@@ -96,9 +96,9 @@ namespace Coffee_Management_System
             // 
             this.lblAppName.Location = new Point(10, 100);
             this.lblAppName.Size = new Size(210, 55);
-            this.lblAppName.Text = "COFFEE\r\nMANAGEMENT";
+            this.lblAppName.Text = "HIGHLAND\r\nFAKE MANAGEMENT";
             this.lblAppName.TextAlign = ContentAlignment.MiddleCenter;
-            this.lblAppName.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            this.lblAppName.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             this.lblAppName.ForeColor = Color.White;
 
             // 
